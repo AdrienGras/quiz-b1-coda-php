@@ -1,19 +1,173 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="h-100">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz B1 Coda PHP</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.com/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        #questionContainer {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+
+        #questionContainer:not(.show) {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        #questionContainer.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <h1 class="mt-5">Quiz B1 Coda PHP</h1>
-        <p class="lead">Bienvenue sur le quiz!</p>
+
+<body data-bs-theme="dark" class="d-flex flex-column h-100">
+    <div class="container my-5 flex-grow-1">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Coda - PHP - Oral</h1>
+
+                <!-- Boutons de difficulté -->
+                <div class="d-flex gap-2 mb-4 flex-wrap">
+                    <button class="btn btn-success btn-lg flex-fill" onclick="afficherQuestion('facile')">
+                        Facile (2 points)
+                    </button>
+                    <button class="btn btn-primary btn-lg flex-fill" onclick="afficherQuestion('normal')">
+                        Normal (3 points)
+                    </button>
+                    <button class="btn btn-warning btn-lg flex-fill" onclick="afficherQuestion('difficile')">
+                        Difficile (4 points)
+                    </button>
+                    <button class="btn btn-danger btn-lg flex-fill" onclick="afficherQuestion('cauchemar')">
+                        Cauchemar (5 points)
+                    </button>
+                </div>
+
+                <!-- Zone d'affichage de la question -->
+                <div id="questionContainer" style="display: block;">
+                    <div id="questionCard" class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Question</h5>
+                            <p class="card-text" id="questionText"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions en bas de page (sticky) -->
+    <div class="mt-auto sticky-bottom bg-body border-top">
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-dark text-white">
+                            <h5 class="mb-0">Instructions</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>📝 Règle :</strong> 3 questions maximum seront posées lors de l'oral.</p>
+                            <p class="mb-2"><strong>🎯 Points par difficulté :</strong></p>
+                            <ul class="list-unstyled mb-3">
+                                <li class="mb-1">🟢 Facile : <strong>2 points</strong></li>
+                                <li class="mb-1">🔵 Normal : <strong>3 points</strong></li>
+                                <li class="mb-1">🟡 Difficile : <strong>4 points</strong></li>
+                                <li class="mb-1">🔴 Cauchemar : <strong>5 points</strong></li>
+                            </ul>
+                            <p class="mb-0"><em>💡 Note : Je serai plus clément sur la précision des réponses à mesure
+                                    de la difficulté.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.com/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        // Tableaux de questions par catégorie
+        const questions = {
+            facile: [
+                "Quelle est la capitale de la France ?",
+                "Combien font 2 + 2 ?",
+                "Quelle couleur obtient-on en mélangeant du bleu et du jaune ?",
+                "Quel animal est connu pour dire 'miaou' ?",
+                "Combien de jours y a-t-il dans une semaine ?"
+            ],
+            normal: [
+                "Qui a peint la Joconde ?",
+                "Quelle est la formule chimique de l'eau ?",
+                "En quelle année a eu lieu la Révolution française ?",
+                "Quel est le plus grand océan du monde ?",
+                "Combien de continents y a-t-il sur Terre ?"
+            ],
+            difficile: [
+                "Quel est le plus petit os du corps humain ?",
+                "Qui a écrit 'Les Misérables' ?",
+                "Quelle est la vitesse de la lumière dans le vide ?",
+                "Quel élément chimique a pour symbole 'Au' ?",
+                "En quelle année la Première Guerre mondiale a-t-elle commencé ?"
+            ],
+            cauchemar: [
+                "Quelle est la constante de Planck ?",
+                "Qui a démontré le dernier théorème de Fermat ?",
+                "Quel est le 17ème élément du tableau périodique ?",
+                "En quelle année Clovis Ier est-il devenu roi des Francs ?",
+                "Quelle est la distance moyenne entre la Terre et la Lune en kilomètres ?"
+            ]
+        };
+
+        // Configuration des couleurs Bootstrap pour chaque difficulté
+        const couleurs = {
+            facile: 'success',
+            normal: 'primary',
+            difficile: 'warning',
+            cauchemar: 'danger'
+        };
+
+        function afficherQuestion(difficulte) {
+            const container = document.getElementById('questionContainer');
+            const questionCard = document.getElementById('questionCard');
+
+            // Si une question est déjà affichée, fade out d'abord
+            if (container.classList.contains('show')) {
+                container.classList.remove('show');
+
+                setTimeout(() => {
+                    afficherNouvelleQuestion(difficulte, container, questionCard);
+                }, 400); // Attendre la fin du fade out (même durée que la transition CSS)
+            } else {
+                afficherNouvelleQuestion(difficulte, container, questionCard);
+            }
+        }
+
+        function afficherNouvelleQuestion(difficulte, container, questionCard) {
+            // Sélectionner une question aléatoire
+            const questionsDisponibles = questions[difficulte];
+            const questionAleatoire = questionsDisponibles[Math.floor(Math.random() * questionsDisponibles.length)];
+
+            // Mettre à jour le texte de la question
+            document.getElementById('questionText').textContent = questionAleatoire;
+
+            // Mettre à jour la couleur de la carte
+            questionCard.className = 'card mb-4 border-' + couleurs[difficulte];
+            questionCard.querySelector('.card-body').className = 'card-body bg-' + couleurs[difficulte] + ' bg-opacity-10';
+
+            // Fade in avec un petit délai pour permettre au DOM de se mettre à jour
+            setTimeout(() => {
+                container.classList.add('show');
+            }, 50);
+        }
+    </script>
 </body>
+
 </html>
