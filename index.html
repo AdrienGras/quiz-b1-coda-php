@@ -73,11 +73,16 @@
                             <p><strong>📝 Règle :</strong> 3 questions maximum seront posées lors de l'oral.</p>
                             <p class="mb-2"><strong>🎯 Points par difficulté :</strong></p>
                             <ul class="list-unstyled mb-3">
-                                <li class="mb-1">🟢 Facile : <strong>2 points</strong></li>
-                                <li class="mb-1">🔵 Normal : <strong>3 points</strong></li>
-                                <li class="mb-1">🟡 Difficile : <strong>4 points</strong></li>
-                                <li class="mb-1">🔴 Cauchemar : <strong>5 points</strong></li>
+                                <li class="mb-1 mx-4">🟢 Facile : <strong>2 points</strong></li>
+                                <li class="mb-1 mx-4">🔵 Normal : <strong>3 points</strong></li>
+                                <li class="mb-1 mx-4">🟡 Difficile : <strong>4 points</strong></li>
+                                <li class="mb-1 mx-4">🔴 Cauchemar : <strong>5 points</strong></li>
                             </ul>
+                            <p><strong>🔁 Important :</strong> Si une question se répète, elle ne sera pas prise en
+                                compte et il faudra en rechoisir une autre.</p>
+                            <p><strong>🥳 Bonus :</strong> Des questions bonus (fun) se sont cachées à tous
+                                les niveaux de difficulté ; vous pouvez les tenter ou les passer. Si elles sont passées
+                                elles ne compteront pas. Une seule question bonus sera prise en compte pour la note.</p>
                             <p class="mb-0"><em>💡 Note : Je serai plus clément sur la précision des réponses à mesure
                                     de la difficulté.</em></p>
                         </div>
@@ -97,32 +102,45 @@
         // Tableaux de questions par catégorie
         const questions = {
             facile: [
-                "Quelle est la capitale de la France ?",
-                "Combien font 2 + 2 ?",
-                "Quelle couleur obtient-on en mélangeant du bleu et du jaune ?",
-                "Quel animal est connu pour dire 'miaou' ?",
-                "Combien de jours y a-t-il dans une semaine ?"
+                "<b>PHP :</b> Comment déclare-t-on une variable en PHP ? <br /><br /><i>Donnez un exemple où cette variable stocke un prénom.</i>",
+                "<b>PHP :</b> Comment affiche-t-on du texte dans une page web en utilisant PHP ? <br /><br /><i>Donnez un exemple pour afficher 'Bonjour le monde'.</i>",
+                "<b>PHP :</b> Comment crée-t-on un tableau associatif en PHP ? <br /><br /><i>Donnez un exemple avec des noms de fruits et leurs prix.</i>",
+                "<b>Symfony :</b> Comment crée-t-on une nouvelle route dans Symfony pour afficher une page \"À propos\" ? <br /><br /><i>Donnez la syntaxe avec une annotation. </i>",
+                "<b>PHP :</b> Comment récupère-t-on une valeur passée dans l'URL (par exemple, ?nom=Coda) ?",
+                "<b>PHP :</b> Comment utilise-t-on une boucle foreach pour parcourir un tableau associatif ? <br /><br /><i>Donnez un exemple avec un tableau nom = age.</i>",
+                "<b>PHP :</b> Comment concatène-t-on deux chaînes de caractères en PHP ?",
+                "<b>🥳 Marvel vs DC :</b> Si tu devais choisir entre devenir un super-héros Marvel (comme Spider-Man ou Iron Man) ou DC (comme Batman ou Wonder Woman), lequel/laquelle choisirais-tu et pourquoi ?"
             ],
             normal: [
-                "Qui a peint la Joconde ?",
-                "Quelle est la formule chimique de l'eau ?",
-                "En quelle année a eu lieu la Révolution française ?",
-                "Quel est le plus grand océan du monde ?",
-                "Combien de continents y a-t-il sur Terre ?"
+                "<b>Symfony :</b> Comment protège-t-on une route Symfony pour qu'elle ne soit accessible qu'aux utilisateurs connectés ?",
+                "<b>Symfony :</b> Comment affiche-t-on un message flash dans une vue Twig après une action réussie (par exemple, la création d'un élément) ?",
+                "<b>Symfony :</b> Comment crée-t-on une entité Doctrine pour représenter une table en base de données ?",
+                "<b>PHP :</b> Comment passer proprement un paramètre à une requête faite avec Doctrine ?",
+                "<b>Symfony :</b> Comment applique-t-on un style CSS à un formulaire Symfony ? <br /><br /><i> Plusieurs bonnes réponses possibles.</i>",
+                "<b>PHP :</b> Comment utilise-t-on l'opérateur ternaire pour simplifier une condition ? Donnez un exemple pour afficher \"Adultes\" si l'âge est >= 18, sinon \"Mineurs\".",
+                "<b>Symfony :</b> Comment crée-t-on un formulaire Symfony avec un champ de type email ?",
+                "<b>🥳 Star ... :</b> Star Wars, Star Trek, Stargate, ou Star Accademy, et pourquoi ?"
             ],
             difficile: [
-                "Quel est le plus petit os du corps humain ?",
-                "Qui a écrit 'Les Misérables' ?",
-                "Quelle est la vitesse de la lumière dans le vide ?",
-                "Quel élément chimique a pour symbole 'Au' ?",
-                "En quelle année la Première Guerre mondiale a-t-elle commencé ?"
+                "<b>Symfony :</b> À quoi sert le fichier composer.json dans un projet Symfony ? Quel type d'information y trouve-t-on ? ",
+                "<b>Symfony :</b> À quoi servent les services dans Symfony ?",
+                "<b>Symfony :</b> Quand on ajoute un nouveau champ à une entité Doctrine, quelles sont les étapes pour mettre à jour la base de données ? <br /><br /><i>Donner toutes les étapes depuis l'ajout du champs jusqu'à la mise à jour</i>",
+                "<b>Symfony :</b> Comment vérifie-t-on qu'un utilisateur n'a pas déjà créé un élément spécifique (par exemple, pour éviter les doublons) ? Décrivez la logique avec Doctrine.",
+                "<b>Symfony :</b> Comment injecter des données de tests proprement dans une base de donnée avec Symfony ?",
+                "<b>Symfony :</b> Comment faire pour qu'un champ texte soit obligatoire et ait au moins 3 caractères dans un formulaire Symfony ?",
+                "<b>Symfony :</b> Comment injecter un service dans un contrôlleur ?",
+                "<b>🥳 Lalalalavaaa :</b> Le film Minecraft, pour ou contre ? Justifier la réponse.",
+                "<b>🥳 Film de science-fiction :</b> Blade Runner, Alien ou The Matrix : lequel a la meilleure ambiance, et pourquoi ?"
             ],
             cauchemar: [
-                "Quelle est la constante de Planck ?",
-                "Qui a démontré le dernier théorème de Fermat ?",
-                "Quel est le 17ème élément du tableau périodique ?",
-                "En quelle année Clovis Ier est-il devenu roi des Francs ?",
-                "Quelle est la distance moyenne entre la Terre et la Lune en kilomètres ?"
+                "<b>Symfony :</b> Décrivez l'enchainement des couches du MVC de l'affichage à la base de donnée dans un projet Symfony.",
+                "<b>Symfony :</b> Décrivez, autant que possible, le mécanisme d'injection de dépendances dans Symfony.",
+                "<b>PHP :</b> Si vous deviez faire un projet simplement avec PHP, comment découperiez-vous le code ? Quelle serait la structure des fichiers ?",
+                "<b>PHP :</b> Quel sont les avantages et inconvénients de PHP par rapport aux autres langages modernes ?",
+                "<b>Symfony :</b> Qu'apporte Symfony par rapport à du code PHP sans framework ?",
+                "<b>🥳 Star Wars :</b> Selon toi, quel est le meilleur personnage de la saga Star Wars ? Justifie ta réponse.",
+                "<b>🥳 Dilemme musical :</b> Si tu ne pouvais écouter qu’un seul groupe ou artiste pour le reste de ta vie, ce serait lequel, et pourquoi ?",
+                "<b>🥳 Univers de jeu vidéo :</b> The Elder Scrolls, Final Fantasy ou Mass Effect : dans quel univers aimeriez-vous vivre, et pourquoi Mass Effect ?"
             ]
         };
 
@@ -156,7 +174,7 @@
             const questionAleatoire = questionsDisponibles[Math.floor(Math.random() * questionsDisponibles.length)];
 
             // Mettre à jour le texte de la question
-            document.getElementById('questionText').textContent = questionAleatoire;
+            document.getElementById('questionText').innerHTML = questionAleatoire;
 
             // Mettre à jour la couleur de la carte
             questionCard.className = 'card mb-4 border-' + couleurs[difficulte];
