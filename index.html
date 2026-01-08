@@ -45,6 +45,9 @@
                     <button class="btn btn-danger btn-lg flex-fill" onclick="afficherQuestion('cauchemar')">
                         Cauchemar (5 points)
                     </button>
+                    <button class="btn btn-dark btn-lg flex-fill" onclick="afficherQuestion('insanity')">
+                        Insanity (6 points)
+                    </button>
                 </div>
 
                 <!-- Zone d'affichage de la question -->
@@ -77,6 +80,7 @@
                                 <li class="mb-1 mx-4">🔵 Normal : <strong>3 points</strong></li>
                                 <li class="mb-1 mx-4">🟡 Difficile : <strong>4 points</strong></li>
                                 <li class="mb-1 mx-4">🔴 Cauchemar : <strong>5 points</strong></li>
+                                <li class="mb-1 mx-4">⚫ Insanity : <strong>6 points</strong></li>
                             </ul>
                             <p><strong>🔁 Important :</strong> Si une question se répète, elle ne sera pas prise en
                                 compte et il faudra en rechoisir une autre.</p>
@@ -119,7 +123,7 @@
                 "<b>Symfony :</b> Comment applique-t-on un style CSS à un formulaire Symfony ? <br /><br /><i> Plusieurs bonnes réponses possibles.</i>",
                 "<b>PHP :</b> Comment utilise-t-on l'opérateur ternaire pour simplifier une condition ? Donnez un exemple pour afficher \"Adultes\" si l'âge est >= 18, sinon \"Mineurs\".",
                 "<b>Symfony :</b> Comment crée-t-on un formulaire Symfony avec un champ de type email ?",
-                "<b>🥳 Star ... :</b> Star Wars, Star Trek, Stargate, ou Star Accademy, et pourquoi ?"
+                "<b>🥳 Star ... :</b> Star Wars, Star Trek, Stargate, ou Star Academy, et pourquoi ?"
             ],
             difficile: [
                 "<b>Symfony :</b> À quoi sert le fichier composer.json dans un projet Symfony ? Quel type d'information y trouve-t-on ? ",
@@ -139,8 +143,16 @@
                 "<b>PHP :</b> Quel sont les avantages et inconvénients de PHP par rapport aux autres langages modernes ?",
                 "<b>Symfony :</b> Qu'apporte Symfony par rapport à du code PHP sans framework ?",
                 "<b>🥳 Star Wars :</b> Selon toi, quel est le meilleur personnage de la saga Star Wars ? Justifie ta réponse.",
-                "<b>🥳 Dilemme musical :</b> Si tu ne pouvais écouter qu’un seul groupe ou artiste pour le reste de ta vie, ce serait lequel, et pourquoi ?",
+                "<b>🥳 Dilemme musical :</b> Si tu ne pouvais écouter qu'un seul groupe ou artiste pour le reste de ta vie, ce serait lequel, et pourquoi ?",
                 "<b>🥳 Univers de jeu vidéo :</b> The Elder Scrolls, Final Fantasy ou Mass Effect : dans quel univers aimeriez-vous vivre, et pourquoi Mass Effect ?"
+            ],
+            insanity: [
+                "<b>Symfony :</b> Quel objet Symfony permet de transformer la requête HTTP en objet Request ?",
+                "<b>Symfony :</b> Quel est le rôle du fichier services.yaml ?",
+                "<b>Symfony :</b> Comment fonctionne Doctrine pour faire le pendant entre les objets PHP et les tables SQL ?",
+                "<b>Symfony :</b> Quelle commande permet d'ajouter des composants logiciels à Symfony ?",
+                "<b>🥳 Personnage de jeu vidéo :</b> Cloud (Final Fantasy VII), Kratos (God of War) ou Geralt (The Witcher) : lequel est le plus charismatique, et qu'est-ce qui le rend si attachant ?",
+                "<b>🥳 Univers de fantasy :</b> The Witcher, Elder Scrolls ou Warhammer 40k : dans lequel aimeriez-vous vivre, et qu'est-ce qui vous attire le plus ?"
             ]
         };
 
@@ -149,7 +161,8 @@
             facile: 'success',
             normal: 'primary',
             difficile: 'warning',
-            cauchemar: 'danger'
+            cauchemar: 'danger',
+            insanity: 'dark'
         };
 
         function afficherQuestion(difficulte) {
